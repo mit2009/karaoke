@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html><head>
+  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+  <style type="text/css">
+  .text-line{ line-height: 160px; }
+  .lyrics-container { font-size: 80px; }
+
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+
+  const teamColors = {
+    1: ['#FDD900', '#000000', 'yellow'],
+    2: ['#EC1C24', '#ffffff', 'red'],
+    3: ['#3675BB', '#ffffff', 'blue'],
+    4: ['#F27421', '#ffffff', 'orange'],
+    5: ['#4FB648', '#ffffff', 'green'],
+    6: ['#EF4681', '#ffffff', 'pink'],
+    7: ['#8A4C9D', '#ffffff', 'purple'],
+    8: ['#B2B4B6', '#000000', 'silver'],
+  }
+
+  lyrics = [
+  "", 
+  "Pappalardo#",
+  "All the students|working down in Pappalardo",
+  "Building, CADing, machining,|we’re never bored, o",
+  "-ccasional all nighters,|so excited for the show",
+
+  "Pappalardo#",
+  "When you see us|working down in Pappalardo",
+  "Bonding as a team,|you know we’re in the zone",
+  "Are y’all ready|for our super demos?",
+  "Super, super, super...|Super, super!",
+
+  "Come on over|in my direction",
+  "Welcome tonight,|to the presentations, yeah",
+  "Turn every problem|into a solution, yeah",
+  "Oh we are….",
+  "The sunrise|every single day",
+  "Got me feelin’|super in every way",
+  "Make me wanna design|every detail slowly, slowly",
+  "Ideate, model, test,|that’s how we get it done",
+  "Got the process key,|know how to turn it on",
+  "The way you brainstorm your ideas,|the only words I wanna hear",
+  "Billy, don’t worry|we got our glasses on",
+
+  "Look!|Red2 team is eye catching|but then you know blue,",
+  "Blue’s3 volume is in control|and purple’s7 so smooth",
+  "Green5 asks do you want|to play it again|(Oh yeah)",
+  "Who? Who’s too hot to handle,|yes it’s team silver8",
+  "Yellow’s1 not lost and|we’ll dust off an orange4 builder",
+  "Turning heads and pages|is the pink6 team ohh",
+
+  "Pappalardo#",
+  "All the students|working down in Pappalardo",
+  "Building, CADing, machining,|we’re never bored, o",
+  "-ccasional all nighters,|so excited for the show",
+
+  "Pappalardo#",
+  "When you see us|working down in Pappalardo",
+  "Bonding as a team,|you know we’re in the zone",
+  "Are y’all ready|for our super demos?",
+  "Super, super, super...|Super, super!",
+
+  "The shop staff help us with designs|until they make us go home",
+  "Working like|we’re superheros",
+  "Product design|it’s fun yo",
+  "(We love the photos,|love the photos|click click)",
+
+  "Every week we learnt|in lecture, 10-250",
+  "Now it is super|you’re in Kresge",
+  "We can all be|product heros",
+
+  "Pappalardo#",
+  "All the students|working down in Pappalardo",
+  "Building, CADing, machining,|we’re never bored, o",
+  "-ccasional all nighters,|so excited for the show",
+
+  "Pappalardo#",
+  "When you see us|working down in Pappalardo",
+  "Bonding as a team,|you know we’re in the zone",
+  "Are y’all ready|for our super demos?",
+  "Super, super, super...|Super, super!",
+
+  "Pappalardo#",
+  "All the students|working down in Pappalardo",
+  "Building, CADing, machining,|we’re never bored, o",
+  "-ccasional all nighters,|so excited for the show",
+
+  "Pappalardo#",
+  "When you see us|working down in Pappalardo",
+  "Bonding as a team,|you know we’re in the zone",
+  "Are y’all ready|for our super demos?",
+  "Super, super, super...|Super, super!",
+  ];
+
+  currentVerse = 0;
+  highlightedLine = 0;
+  LINE_HEIGHT = 165;
+  SHIFT = 137;
+
+  function generateCurrentVerse() {
+    lines = lyrics[currentVerse].split('|');
+    textStyle = "";
+    generatedLyrics = "";
+
+    for (l in lines) {
+      words = lines[l].split(' ');
+
+        // start of the line
+        generatedLyrics += '<div class="text-line" id ="' + l + '">';
+
+        for (i in words) {
+          textStyle = "";
+          word = words[i];
+          for (j in teamColors) {
+            if (words[i].slice(-1) == (j).toString()) {
+              //'class="boxy" ' +
+              textStyle = "data-color=\"" + teamColors[j][0] + "\" data-textcolor=\"" + teamColors[j][1] + "\"";
+              word = word.substring(0,word.length-1);
+            } 
+          }
+
+          // largeee!
+          if (words[i].indexOf('#') > 0) {
+            word = word.substring(0,word.length-1)
+            textStyle = "style=\"font-size:250px\"";
+          }
+
+          if (textStyle) {
+            generatedLyrics += "<span " + textStyle + ">" + word + "</span>"
+          } else {
+            generatedLyrics += "<span>" + word + "</span>";
+          }
+          // generatedLyrics += " ";
+        }
+
+        generatedLyrics += '</div>';
+      }
+      $('.text-container').html(generatedLyrics);
+    }
+
+
+    function init() {
+      generateCurrentVerse();
+      nextStep();
+    }
+
+    function nextStep() {
+      if (highlightedLine >= lyrics[currentVerse].split('|').length) {
+        currentVerse ++;
+
+        if (currentVerse >= lyrics.length) {
+          $('.dot').stop().animate({
+            top: 1950
+          }, 100, function() {
+            console.log('dot leaves forever');
+          });
+          $('#' + (highlightedLine-1)).removeClass('highlight');
+          return;
+        } 
+
+        highlightedLine = 0;
+        $('.dot').stop().animate({
+          top: 1 * LINE_HEIGHT - SHIFT,
+          opacity: 0.8,
+            }, 100, function() {
+              console.log('start highlight')
+            });
+
+        // to correct any awko taco jumps >:
+        setTimeout(function() {
+          generateCurrentVerse();
+        }, 50);
+        
+
+      } else {
+        setTimeout(function() {
+          // loop through children
+          $('#' + (highlightedLine)).children().each(function() {
+            color = $(this).data('color');
+            textcolor = $(this).data('textcolor');
+            $(this).css('backgroundColor', color);
+            $(this).css('color', textcolor);
+          });
+          
+          $('#' + (highlightedLine-1)).removeClass('highlight');
+          $('#' + (highlightedLine)).addClass('highlight');
+
+          highlightedLine ++;
+        }, 50);
+
+        $('.dot').animate({
+          top: (highlightedLine+1) * LINE_HEIGHT - SHIFT
+        }, 50, function() {
+          console.log('shifty');
+          console.log((highlightedLine+1) * LINE_HEIGHT - SHIFT);
+        })
+      }
+    }
+
+    $(function() {
+      init();
+      $('body').keyup(function(e){
+        console.log(e.keyCode);
+        if(e.keyCode == 32 || e.keyCode == 40){
+             // user has pressed backspace
+             nextStep();
+           }
+           if (e.keyCode == 38) {
+            // this isn't implemented lol
+            // previousStep();
+          }
+        });
+    });
+  </script>
+</head>
+<body style="">
+  <div class="video-bounds">
+    <div class="lyrics-container">
+      <div class="text-container"></div>
+      <div class="dot" style="top: 28px; opacity: 0;">
+      </div>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://web.mit.edu/2.009/www/lyrics/sweetcaroline.html -->
+<html><head>
+  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+  <script type="text/javascript">
+
+    const teamColors = {
+      1: ['#FDD900', '#000000', 'yellow'],
+      2: ['#EC1C24', '#ffffff', 'red'],
+      3: ['#3675BB', '#ffffff', 'blue'],
+      4: ['#F27421', '#ffffff', 'orange'],
+      5: ['#4FB648', '#ffffff', 'green'],
+      6: ['#EF4681', '#ffffff', 'pink'],
+      7: ['#8A4C9D', '#ffffff', 'purple'],
+      8: ['#B2B4B6', '#000000', 'silver'],
+    }
+
+    lyrics = [
+    "Where it began",
+    "I can't begin to knowin'",
+    "But then again it's growing strong",
+
+    "Was it the spring",
+    "And spring became the summer",
+    "Who'd have believed you'd come along.",
+
+    "Hands, touchin' hands",
+    "Reachin' out, touchin' me, touchin' you",
+
+    "Sweet Caroline!",
+    "Good times never seemed so good",
+    "I've been inclined",
+    "To believe they never would",
+
+    "SWEEEEET CAROLINE!",
+    "Good times never seemed so good",
+    "so good so good so good",
+
+    "I've been inclined,",
+    "To believe they never would"
+    ]
+
+    currentLine = 0;
+    highlightedWord = 0;
+    LINE_HEIGHT = 86;
+    SHIFT = 115;
+
+    function generateCurrentLine() {
+      words = lyrics[currentLine].split(' ');
+      var generatedLyrics = '';
+      for (i in words) {
+        setColor = '';
+        word = words[i];
+        for (j in teamColors) {
+          if (words[i].indexOf(j) > 0){
+            setColor = "data-color=\"" + teamColors[j][0] + "\" data-textcolor=\"" + teamColors[j][1] + "\"";
+            word = word.substring(0,word.length-1)
+          }
+        }
+        generatedLyrics += '<div class="text-line" '+setColor+' id='+i+'>'+word+'</div>';
+      }
+      $('.text-container').html(generatedLyrics)
+    }
+
+    function init() {
+      generateCurrentLine();
+    }
+
+    function nextStep() {
+      console.log(currentLine);
+
+      if (highlightedWord + 1 > lyrics[currentLine].split(' ').length) {
+        currentLine ++;
+
+        if (currentLine >= lyrics.length) {
+          $('.dot').stop().animate({
+            top: 1950
+          }, 100, function() {
+            console.log('dot leaves forever');
+          })
+          $('#' + (highlightedWord-1)).removeClass('highlight');
+          return;
+        } 
+
+        highlightedWord = 0;
+        $('.dot').stop().animate({
+          top: 1 * LINE_HEIGHT - SHIFT,
+            }, 100, function() {
+              console.log('start highlight')
+            });
+
+        // to correct any awko taco jumps >:
+        setTimeout(function() {
+          generateCurrentLine();
+        }, 50);
+
+      } else {
+
+        setTimeout(function() {
+          if ($('#' + (highlightedWord)).data('color')) {
+            color = $('#' + (highlightedWord)).data('color');
+            textcolor = $('#' + (highlightedWord)).data('textcolor');
+            $('#' + (highlightedWord)).css('backgroundColor', color)
+            $('#' + (highlightedWord)).css('color', textcolor)
+          }
+          $('#' + (highlightedWord-1)).removeClass('highlight');
+          $('#' + (highlightedWord)).addClass('highlight');
+
+          highlightedWord ++;
+        }, 50);
+
+        $('.dot').animate({
+          top: (highlightedWord+1) * LINE_HEIGHT - SHIFT
+        }, 50)
+      }
+
+    }
+    $(function() {
+      init();
+      $('body').keyup(function(e){
+        console.log(e.keyCode);
+        if(e.keyCode == 32 || e.keyCode == 40){
+             // user has pressed backspace
+             nextStep();
+           }
+           if (e.keyCode == 38) {
+            previousStep();
+          }
+        });
+    });
+  </script>
+</head>
+<body style="">
+  <div class="video-bounds">
+    <div class="lyrics-container">
+      <div class="text-container"></div>
+      <div class="dot" style="top: -29px; opacity: 0.8;">
+      </div>
+    </div>
+  </div>
+
+
+</body></html>
