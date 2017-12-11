@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
-  <style type="text/css">
+  <style type="text/css">/*
   .text-line{ line-height: 160px; }
-  .lyrics-container { font-size: 80px; }
+  .lyrics-container { font-size: 80px; }*/
 
 </style>
 
@@ -28,82 +28,46 @@
   lyrics = [
   "", 
   "Pappalardo#",
-  "All the students|working down in Pappalardo",
-  "Building, CADing, machining,|we’re never bored, o",
-  "-ccasional all nighters,|so excited for the show",
+  "All the students|working down in Pappalardo|Building, CADing, machining,|we’re never bored, o|-ccasional all nighters,|so excited for the show",
 
   "Pappalardo#",
-  "When you see us|working down in Pappalardo",
-  "Bonding as a team,|you know we’re in the zone",
-  "Are y’all ready|for our super demos?",
-  "Super, super, super...|Super, super!",
+  "When you see us|working down in Pappalardo|Bonding as a team,|you know we’re in the zone|Are y’all ready|for our super demos?|Super, super, super...|Super, super!",
 
-  "Come on over|in my direction",
-  "Welcome tonight,|to the presentations, yeah",
-  "Turn every problem|into a solution, yeah",
-  "Oh we are….",
-  "The sunrise|every single day",
-  "Got me feelin’|super in every way",
-  "Make me wanna design|every detail slowly, slowly",
-  "Ideate, model, test,|that’s how we get it done",
-  "Got the process key,|know how to turn it on",
-  "The way you brainstorm your ideas,|the only words I wanna hear",
-  "Billy, don’t worry|we got our glasses on",
+  "Come on over|in my direction|Welcome tonight,|to the presentations, yeah|Turn every problem|into a solution, yeah",
+  "Oh we are|The sunrise|every single day|Got me feelin’|super in every way|Make me wanna design|every detail slowly, slowly",
+  "Ideate, model, test,|that’s how we get it done|Got the process key,|know how to turn it on|The way you brainstorm your ideas,|the only words I wanna hear|Billy, don’t worry|we got our glasses on",
 
-  "Look!|Red2 team is eye catching|but then you know blue,",
-  "Blue’s3 volume is in control|and purple’s7 so smooth",
-  "Green5 asks do you want|to play it again|(Oh yeah)",
-  "Who? Who’s too hot to handle,|yes it’s team silver8",
-  "Yellow’s1 not lost and|we’ll dust off an orange4 builder",
-  "Turning heads and pages|is the pink6 team ohh",
+  "Look!|Red2 team is eye catching|but then you know blue,|Blue’s3 volume is in control|and purple’s7 so smooth|Green5 asks do you want|to play it again|(Oh yeah)",
+  "Who? Who’s too hot to handle,|yes it’s team silver8|Yellow’s1 not lost and|we’ll dust off an orange4 builder|Turning heads and pages|is the pink6 team ohh",
 
   "Pappalardo#",
-  "All the students|working down in Pappalardo",
-  "Building, CADing, machining,|we’re never bored, o",
-  "-ccasional all nighters,|so excited for the show",
+  "All the students|working down in Pappalardo|Building, CADing, machining,|we’re never bored, o|-ccasional all nighters,|so excited for the show",
 
   "Pappalardo#",
-  "When you see us|working down in Pappalardo",
-  "Bonding as a team,|you know we’re in the zone",
-  "Are y’all ready|for our super demos?",
-  "Super, super, super...|Super, super!",
+  "When you see us|working down in Pappalardo|Bonding as a team,|you know we’re in the zone|Are y’all ready|for our super demos?|Super, super, super...|Super, super!",
 
-  "The shop staff help us with designs|until they make us go home",
-  "Working like|we’re superheros",
-  "Product design|it’s fun yo",
-  "(We love the photos,|love the photos|click click)",
+  "The shop staff|help us with designs|until they make us go home",
+  "Working like|we’re superheros|Product design|it’s fun yo|(We love the photos,|love the photos|click click)",
 
-  "Every week we learnt|in lecture, 10-250",
-  "Now it is super|you’re in Kresge",
-  "We can all be|product heros",
+  "Every week we learnt|in lecture, 10-250|Now it's super|you’re in Kresge|We can all be|product heros",
 
   "Pappalardo#",
-  "All the students|working down in Pappalardo",
-  "Building, CADing, machining,|we’re never bored, o",
-  "-ccasional all nighters,|so excited for the show",
+  "All the students|working down in Pappalardo|Building, CADing, machining,|we’re never bored, o|-ccasional all nighters,|so excited for the show",
 
   "Pappalardo#",
-  "When you see us|working down in Pappalardo",
-  "Bonding as a team,|you know we’re in the zone",
-  "Are y’all ready|for our super demos?",
-  "Super, super, super...|Super, super!",
+  "When you see us|working down in Pappalardo|Bonding as a team,|you know we’re in the zone|Are y’all ready|for our super demos?",
 
   "Pappalardo#",
-  "All the students|working down in Pappalardo",
-  "Building, CADing, machining,|we’re never bored, o",
-  "-ccasional all nighters,|so excited for the show",
+  "All the students|working down in Pappalardo|Building, CADing, machining,|we’re never bored, o|-ccasional all nighters,|so excited for the show",
 
   "Pappalardo#",
-  "When you see us|working down in Pappalardo",
-  "Bonding as a team,|you know we’re in the zone",
-  "Are y’all ready|for our super demos?",
-  "Super, super, super...|Super, super!",
+  "When you see us|working down in Pappalardo|Bonding as a team,|you know we’re in the zone|Are y’all ready|for our super demos?|Super, super, super...|Super, super!",
   ];
 
   currentVerse = 0;
   highlightedLine = 0;
-  LINE_HEIGHT = 165;
-  SHIFT = 137;
+  LINE_HEIGHT = 86;
+  SHIFT = 113;
 
   function generateCurrentVerse() {
     lines = lyrics[currentVerse].split('|');
@@ -122,7 +86,7 @@
           for (j in teamColors) {
             if (words[i].slice(-1) == (j).toString()) {
               //'class="boxy" ' +
-              textStyle = "data-color=\"" + teamColors[j][0] + "\" data-textcolor=\"" + teamColors[j][1] + "\"";
+              textStyle = "data-color=\"" + teamColors[j][0] + "\" data-textcolor=\"" + teamColors[j][1] + "\" class=\"colorful\"";
               word = word.substring(0,word.length-1);
             } 
           }
@@ -130,7 +94,7 @@
           // largeee!
           if (words[i].indexOf('#') > 0) {
             word = word.substring(0,word.length-1)
-            textStyle = "style=\"font-size:250px\"";
+            textStyle = "style=\"font-size:150px\"";
           }
 
           if (textStyle) {
@@ -138,7 +102,6 @@
           } else {
             generatedLyrics += "<span>" + word + "</span>";
           }
-          // generatedLyrics += " ";
         }
 
         generatedLyrics += '</div>';
@@ -188,6 +151,10 @@
             textcolor = $(this).data('textcolor');
             $(this).css('backgroundColor', color);
             $(this).css('color', textcolor);
+            if ($(this).hasClass("colorful")) {            
+              $(this).css('padding-left', 20);
+              $(this).css('padding-right', 20);
+            }
           });
           
           $('#' + (highlightedLine-1)).removeClass('highlight');

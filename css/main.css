@@ -1,3 +1,5 @@
+* {cursor: none;}
+
 body {
   background-color: #000;
   font-family: 'Lato';
@@ -17,7 +19,7 @@ body {
 .lyrics-container {
   font-weight: 300;
   font-size: 50px;
-  left: 300px;
+  left: 150px;
   top: 50%;
   transform: translateY(-50%);
   position: absolute;
@@ -28,7 +30,7 @@ body {
   width: 500px;
   height: 100px;
   position: absolute;
-  left: -550px;
+  left: -500px;
   top: 31px;
   background-repeat: no-repeat;
   background-image: url('pman.png');
@@ -39,13 +41,13 @@ body {
 
 .text-line {
   opacity: 1;
-  padding: 0 20px 6px;
+  padding: 0 40px 6px;
   line-height: 80px;
   border-radius: 5px;
 }
 
 .text-line span {
-  padding: 0 20px 6px;
+  padding: 0 10px 6px;
   border-radius: 5px;
 }
 
