@@ -33,10 +33,10 @@
     "Reachin' out, touchin' me, touchin' you",
 
     "Sweet Caroline!",
-    "bum bum bum",
+    "bum bum# bum##",
     "Good times never seemed so good",
     "I've been inclined",
-    "bum bum bum",
+    "bum bum# bum##",
     "To believe they never would",
     "But now I",
 
@@ -50,22 +50,23 @@
     "Reachin' out, touchin' me, touchin' you",
 
     "Sweet Caroline",
-    "bum bum bum",
+    "bum bum# bum##",
     "Good times never seemed so good",
     "I've been inclined",
-    "bum bum bum",
+    "bum bum# bum##",
     "To believe they never would",
     "Oh no, no",
 
-    "SWEEEEET CAROLINE!",
-    "bum bum bum",
+    "SWEEEEET# CAROLINE!#",
+    "bum bum# bum##",
     "Good times never seemed so good",
-    "so good so good SO GOOD",
+    "so&nbsp;good so&nbsp;good# so&nbsp;good##",
     "Sweet Caroline",
-    "bum bum bum",
+    "bum bum# bum##",
     "I believe they never could",
     ]
 
+    previousHeight = 0;
     currentLine = 0;
     highlightedWord = 0;
     LINE_HEIGHT = 86;
@@ -75,45 +76,61 @@
       words = lyrics[currentLine].split(' ');
       var generatedLyrics = '';
       for (i in words) {
-        setColor = '';
+        textStyle = '';
         word = words[i];
         for (j in teamColors) {
           if (words[i].indexOf(j) > 0){
-            setColor = "data-color=\"" + teamColors[j][0] + "\" data-textcolor=\"" + teamColors[j][1] + "\"";
+            textStyle = "data-color=\"" + teamColors[j][0] + "\" data-textcolor=\"" + teamColors[j][1] + "\"";
             word = word.substring(0,word.length-1)
           }
         }
-        generatedLyrics += '<div class="text-line" '+setColor+' id='+i+'>'+word+'</div>';
+
+      // largeee!
+      var isBigger = false;
+      var count = 0;
+      while (word.indexOf('#') > 0) {
+        isBigger = true;
+        count += 1;
+        word = word.substring(0,word.length-1);
       }
-      $('.text-container').html(generatedLyrics)
+
+      if (isBigger) {
+        var fontsize = 50 + 50 * count;
+        var lineheight = 80 + 50 * count;
+        textStyle = 'style="font-size:'+ fontsize+'px; line-height:' + lineheight + 'px" data-big="' + count + '"';
+      }
+
+      generatedLyrics += '<div class="text-line" '+textStyle+' id='+i+'>'+word+'</div>';
     }
+    $('.text-container').html(generatedLyrics)
+  }
 
-    function init() {
-      generateCurrentLine();
-    }
+  function init() {
+    generateCurrentLine();
+  }
 
-    function nextStep() {
-      console.log(currentLine);
+  function nextStep() {
+    console.log(currentLine);
 
-      if (highlightedWord + 1 > lyrics[currentLine].split(' ').length) {
-        currentLine ++;
+    if (highlightedWord + 1 > lyrics[currentLine].split(' ').length) {
+      currentLine ++;
 
-        if (currentLine >= lyrics.length) {
-          $('.dot').stop().animate({
-            top: 1950
-          }, 100, function() {
-            console.log('dot leaves forever');
-          })
-          $('#' + (highlightedWord-1)).removeClass('highlight');
-          return;
-        } 
-
-        highlightedWord = 0;
+      if (currentLine >= lyrics.length) {
         $('.dot').stop().animate({
-          top: 1 * LINE_HEIGHT - SHIFT,
+          top: 1950
         }, 100, function() {
-          console.log('start highlight')
-        });
+          console.log('dot leaves forever');
+        })
+        $('#' + (highlightedWord-1)).removeClass('highlight');
+        return;
+      } 
+
+      highlightedWord = 0;
+      $('.dot').stop().animate({
+        top: 1 * LINE_HEIGHT - SHIFT,
+      }, 100, function() {
+        console.log('start highlight')
+      });
 
         // to correct any awko taco jumps >:
         setTimeout(function() {
@@ -135,9 +152,24 @@
           highlightedWord ++;
         }, 50);
 
-        $('.dot').animate({
-          top: (highlightedWord+1) * LINE_HEIGHT - SHIFT
-        }, 50)
+        if ($('#' + (highlightedWord)).data('big')) {
+          console.log("yay");
+          previousHeight = previousHeight + LINE_HEIGHT +  48 * (parseInt($('#' + (highlightedWord)).data('big')));
+
+          console.log(previousHeight);
+          $('.dot').animate({
+            top: previousHeight,
+          }, 50, function() {
+            console.log("previous height " + previousHeight);
+          });
+        } else {
+          $('.dot').animate({
+            top: (highlightedWord+1) * LINE_HEIGHT - SHIFT
+          }, 50, function() {
+            previousHeight = (highlightedWord) * LINE_HEIGHT - SHIFT;
+            console.log("previousHeight " + previousHeight);
+          })
+        }
       }
 
     }
