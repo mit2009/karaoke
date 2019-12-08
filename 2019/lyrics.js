@@ -36,12 +36,16 @@
                 word = word.substring(0, word.length - 1);
               }
             }
-  
             // largeee!
             if (words[i].indexOf('#') > 0) {
               word = word.substring(0, word.length - 1)
               textStyle = "style=\"font-size:150px;margin-left: -15px;\"";
             }
+            // largeee!
+            if (words[i].indexOf('%') > 0) {
+                word = word.substring(0, word.length - 1)
+                textStyle = "style=\"font-size:200px;position: relative; top: 10px;margin-left: -20px;\"";
+              }
   
             if (textStyle) {
               generatedLyrics += "<span " + textStyle + ">" + word + "</span>"
@@ -117,9 +121,13 @@
         .removeClass()
         .addClass("dot");
 
-        if (fixedColor !== undefined) {
-            $(".dot").addClass("mallow-" + fixedColor);
-        }
+        try {
+            if (fixedColor !== undefined) {
+                $(".dot").addClass("mallow-" + fixedColor);
+            }
+        } catch {
+
+        };
       }
 
       function nextStep() {
