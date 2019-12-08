@@ -36,15 +36,34 @@
                 word = word.substring(0, word.length - 1);
               }
             }
+
+            // largeee!
+            if (words[i].indexOf('+') > 0) {
+              word = word.substring(0, word.length - 1)
+              textStyle = `
+              data-size="bum"`;
+            }
+            
             // largeee!
             if (words[i].indexOf('#') > 0) {
               word = word.substring(0, word.length - 1)
-              textStyle = "style=\"font-size:150px;margin-left: -15px;\"";
+              textStyle = `
+              data-size="large" 
+              style="
+                font-size: 150px; 
+                margin-left: -15px;"`;
             }
-            // largeee!
+
+            // LARGERRRRRRR!
             if (words[i].indexOf('%') > 0) {
                 word = word.substring(0, word.length - 1)
-                textStyle = "style=\"font-size:200px;position: relative; top: 10px;margin-left: -20px;\"";
+                textStyle = `
+                data-size="larger" 
+                style="
+                  font-size: 200px; 
+                  margin-left: -20px;"
+                  position: relative;
+                  top: 10px;`;
               }
   
             if (textStyle) {
@@ -63,6 +82,12 @@
       function init() {
         generateCurrentVerse();
         nextStep();
+
+        try {
+            if (sweetCaroline) {
+                sweetCarolineSpecial();
+            }
+        } catch {};
       }
   
       function getRotation($elem) {
@@ -125,9 +150,50 @@
             if (fixedColor !== undefined) {
                 $(".dot").addClass("mallow-" + fixedColor);
             }
-        } catch {
+        } catch {};
+      }
 
-        };
+      function sweetCarolineSpecial() {
+        spacing = 100;
+        units = 1920/spacing;
+        
+        for (i = 0; i < units; i ++) {
+            mallowColor = teamColors[i%8+1][2]
+            $scMallow = $(`<div class="sc-mallow mallow-${mallowColor}" style="
+                left:${i*spacing}px;
+                bottom: -100px;
+            "></div>`);
+            $(".sweet-caroline-container").append($scMallow)
+        }    
+      }
+
+      function updateSweetCarolineSpecial(c) {
+          $(".sc-mallow").each(function() {
+            if (c === 0) {
+                topAdjust = -150;
+                scale = 1;
+                left = 0;
+            } else if (c === 1) {
+                topAdjust = Math.floor(Math.random()*100-50);
+                scale = 1;
+                left = Math.random() * 10 - 5;
+            } else if (c === 2) {
+                topAdjust = Math.floor(Math.random()*200);
+                scale = 2;
+                left = Math.random() * 80 - 25;
+            } else if (c === 3) {
+                topAdjust = Math.floor(Math.random()*800+50);
+                scale = 4;
+                left = Math.random() * 100 - 50;
+            }
+            $(this).removeClass("size-2")
+              .addClass("sc-mallow")
+              .addClass("size-"+c)
+              .css({
+                bottom: topAdjust,
+                transform: `scale(${scale}) translateX(${left}px) rotate(${Math.floor(Math.random()*360)}deg)`
+              })
+            })
       }
 
       function nextStep() {
@@ -146,6 +212,7 @@
   
           highlightedLine = 0;
   
+          updateSweetCarolineSpecial(0);
           generateMallow();
           
           $('.dot').stop().animate({
@@ -171,7 +238,16 @@
               color = $(this).data('color');
               textcolor = $(this).data('textcolor');
               colorname = $(this).data('colorname');
-  
+                
+              size = $(this).data('size');
+              if (size === 'bum') {
+                updateSweetCarolineSpecial(1);
+              } else if (size === 'large') {
+                updateSweetCarolineSpecial(2);
+              } else if (size === 'larger') {
+                updateSweetCarolineSpecial(3);
+              }
+
               if (colorname !== undefined) {
                 mallowColorName = colorname;
               };
