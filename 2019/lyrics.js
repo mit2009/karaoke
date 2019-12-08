@@ -170,7 +170,7 @@
       function updateSweetCarolineSpecial(c) {
           $(".sc-mallow").each(function() {
             if (c === 0) {
-                topAdjust = -100;
+                topAdjust = -150;
                 scale = 1;
                 left = 0;
             } else if (c === 1) {
