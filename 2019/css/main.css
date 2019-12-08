@@ -33,43 +33,43 @@ body {
   left: -100px;
   top: 31px;
   background-repeat: no-repeat;
-  background-image: url('../mallows_all.png');
+  background-image: url('../mallows_all-c.png');
   background-size: contain;
   background-position: right center;
   z-index: -100;
   transform-origin: center center;
 }
 
-.dot.mallow-red {
-  background-image: url('../mallows_red.png');
+.mallow-red {
+  background-image: url('../mallows_red-c.png');
 }
 
-.dot.mallow-blue {
-  background-image: url('../mallows_blue.png');
+.mallow-blue {
+  background-image: url('../mallows_blue-c.png');
 }
 
-.dot.mallow-orange {
-  background-image: url('../mallows_orange.png');
+.mallow-orange {
+  background-image: url('../mallows_orange-c.png');
 }
 
-.dot.mallow-yellow {
-  background-image: url('../mallows_yellow.png');
+.mallow-yellow {
+  background-image: url('../mallows_yellow-c.png');
 }
 
-.dot.mallow-green {
-  background-image: url('../mallows_green.png');
+.mallow-green {
+  background-image: url('../mallows_green-c.png');
 }
 
-.dot.mallow-purple {
-  background-image: url('../mallows_purple.png');
+.mallow-purple {
+  background-image: url('../mallows_purple-c.png');
 }
 
-.dot.mallow-silver {
-  background-image: url('../mallows_silver.png');
+.mallow-silver {
+  background-image: url('../mallows_silver-c.png');
 }
 
-.dot.mallow-pink {
-  background-image: url('../mallows_pink.png');
+.mallow-pink {
+  background-image: url('../mallows_pink-c.png');
 }
 
 .text-line {
@@ -87,4 +87,22 @@ body {
 .highlight {
   opacity: 1;
   font-weight: 600;
+}
+
+.sc-mallow {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  transition: 0.2s all;
+}
+
+.size-1 {
+}
+
+.size-2 {
+}
+
+.size-3 {
 }
