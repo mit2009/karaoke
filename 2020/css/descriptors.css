@@ -1,0 +1,56 @@
+.colorful-after {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.pink-after {
+  background-color: #EF4681;
+  color: #ffffff;
+}
+
+.red-after {
+  background-color: #EC1C24;
+  color: #ffffff;
+}
+
+.orange-after {
+  background-color: #F27421;
+  color: #ffffff;
+}
+
+.yellow-after {
+  background-color: #FDD900;
+  color: #000000;
+}
+
+.green-after {
+  background-color: #4FB648;
+  color: #ffffff;
+}
+
+.blue-after {
+  background-color: #3675BB;
+  color: #ffffff;
+}
+
+.purple-after {
+  background-color: #8A4C9D;
+  color: #ffffff;
+}
+
+.silver-after {
+  background-color: #B2B4B6;
+  color: #000000;
+}
+
+.big {
+  font-size: 150px; 
+  margin-left: -15px;
+}
+
+.bigger {
+  font-size: 200px; 
+  margin-left: -20px;"
+  position: relative;
+  top: 10px;
+}
