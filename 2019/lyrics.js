@@ -111,6 +111,17 @@
           }
         });
       }
+      
+      function generateMallow() {
+        $(".dot")
+        .removeClass()
+        .addClass("dot");
+
+        if (fixedColor !== undefined) {
+            $(".dot").addClass("mallow-" + fixedColor);
+        }
+      }
+
       function nextStep() {
         if (highlightedLine >= lyrics[currentVerse].split('|').length) {
           currentVerse++;
@@ -127,12 +138,8 @@
   
           highlightedLine = 0;
   
-  
-          $(".dot")
-            .removeClass()
-            .addClass("dot");
-  
-  
+          generateMallow();
+          
           $('.dot').stop().animate({
             top: 1 * LINE_HEIGHT - SHIFT,
             opacity: 0.8,
@@ -174,10 +181,8 @@
             $('#' + (highlightedLine)).addClass('highlight');
   
             highlightedLine++;
-  
-            $(".dot")
-              .removeClass()
-              .addClass("dot");
+
+             generateMallow();
   
             $('.dot')
               .addClass('mallow')
