@@ -13,6 +13,10 @@ body {
   overflow: hidden;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .text-container {
 }
 

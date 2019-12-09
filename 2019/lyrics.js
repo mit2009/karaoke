@@ -16,6 +16,11 @@
       SHIFT = 100;
   
       function generateCurrentVerse() {
+        if (lyrics[currentVerse] === "~") {
+          $(".lyrics-container").addClass("hidden")
+          currentVerse++;
+        }
+
         lines = lyrics[currentVerse].split('|');
         textStyle = "";
         generatedLyrics = "";
@@ -231,6 +236,10 @@
   
   
         } else {
+          if ($('.lyrics-container').hasClass('hidden')) {
+            $('.lyrics-container').removeClass('hidden')
+            return;
+          }
           setTimeout(function () {
             // loop through children
             mallowColorName = '';
