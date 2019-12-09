@@ -17,8 +17,8 @@ body {
 }
 
 .lyrics-container {
-  font-weight: 300;
-  font-size: 50px;
+  font-weight: 500;
+  font-size: 65px;
   left: 150px;
   top: 50%;
   transform: translateY(-50%);
@@ -86,7 +86,7 @@ body {
 
 .highlight {
   opacity: 1;
-  font-weight: 600;
+  font-weight: 900;
 }
 
 .sc-mallow {
