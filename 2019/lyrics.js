@@ -284,10 +284,11 @@
       $(function () {
         init();
         $('body').keyup(function (e) {
-          console.log(e.keyCode);
           if (e.keyCode == 32 || e.keyCode == 40) {
             // user has pressed backspace
-            nextStep();
+            nextStep()
+            // for practicing with time delay
+            // setTimeout(nextStep, 500);
           }
           if (e.keyCode == 38) {
             // this isn't implemented lol
