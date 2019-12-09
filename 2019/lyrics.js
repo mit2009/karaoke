@@ -12,8 +12,8 @@
   
       currentVerse = 0;
       highlightedLine = 0;
-      LINE_HEIGHT = 86;
-      SHIFT = 100;
+      LINE_HEIGHT = 106;
+      SHIFT = 110;
   
       function generateCurrentVerse() {
         if (lyrics[currentVerse] === "~") {
