@@ -249,12 +249,14 @@
               colorname = $(this).data('colorname');
                 
               size = $(this).data('size');
-              if (size === 'bum') {
-                updateSweetCarolineSpecial(1);
-              } else if (size === 'large') {
-                updateSweetCarolineSpecial(2);
-              } else if (size === 'larger') {
-                updateSweetCarolineSpecial(3);
+              if ($(this).context.innerHTML === 'bum') {
+                if (size === 'bum') {
+                  updateSweetCarolineSpecial(1);
+                } else if (size === 'large') {
+                  updateSweetCarolineSpecial(2);
+                } else if (size === 'larger') {
+                  updateSweetCarolineSpecial(3);
+                }
               }
 
               if (colorname !== undefined) {
@@ -293,13 +295,15 @@
       $(function () {
         init();
         $('body').keyup(function (e) {
+          console.log(e.keyCode)
           if (e.keyCode == 32 || e.keyCode == 40) {
             // user has pressed backspace
             nextStep()
             // for practicing with time delay
             // setTimeout(nextStep, 500);
           }
-          if (e.keyCode == 38) {
+          if (e.keyCode == 8) {
+            $(".lyrics-container").toggleClass("hidden")
             // this isn't implemented lol
             // previousStep();
           }
